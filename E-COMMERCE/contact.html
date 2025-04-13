@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link rel="icon" type="image/x-icon" href="iconz.png">
+
+
+  <style>
+    .contact-section {
+      padding: 50px 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      margin: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-left: 300px;
+      margin-right: 300px;
+    }
+
+    .contact-section h2 {
+      color: purple;
+      margin-bottom: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a img {
+      width: 40px;
+      height: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.2);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(bg.jpg) no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
+    }
+
+    .w3-bar {
+      padding: 12px 20px;
+    }
+
+    .w3-bar-item {
+      margin-right: 0.5em;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .w3-bar-item::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: purple;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .w3-bar-item:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    /* Hide .w3-hide-small always */
+    .w3-hide-small {
+      display: block !important;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="w3-bar w3-white">
+
+  <a href="index.html" class="w3-text-purple w3-none">
+    <img src="logo.png" title="Flaticon logo" width="60" height="35" class="block" alt="Flaticon logo">
+    <span class="w3-xlarge w3-none"><b>E-COMMERCE</b></span>
+  </a>
+
+  <span class="w3-xlarge w3-text-purple"><b></b></span>
+  <div class="w3-right">
+    <a href="index.html" class="w3-bar-item w3-text-black">HOME</a>
+    <a href="product.html" class="w3-bar-item w3-text-black">PRODUCTS</a>
+    <a href="contact.html" class="w3-bar-item w3-text-black">CONTACT</a>
+    <a href="signup.html" class="w3-bar-item w3-button w3-gray w3-hover-dark-gray w3-round">Sign Up</a>
+    <a href="login.html" class="w3-bar-item w3-button w3-gray w3-hover-dark-gray w3-round">Sign In</a>
+  </div>
+</div>
+
+<div id="contact" class="contact-section w3-card-4">
+  <h2>Contact Us</h2>
+  <p>Please follow us on our socials: </p>
+
+  <div class="social-icons">
+    <a href="https://github.com/Himeru27" target="_blank" title="GitHub">
+      <img src="github.png" alt="GitHub" width="50" height="50">
+    </a>
+
+    <a href="https://www.facebook.com/jhoshua.shimoyamavi/" target="_blank" title="Facebook">
+      <img src="facebook.png" alt="Facebook" width="50" height="50">
+    </a>
+
+    <a href="https://www.linkedin.com/in/jhoshua-shimz-a20b05347/" target="_blank" title="LinkedIn">
+      <img src="linkedin.png" alt="LinkedIn" width="50" height="50">
+    </a>
+
+    <a href="https://www.youtube.com/@himeru7879" target="_blank" title="YouTube">
+      <img src="youtube.png" alt="YouTube" width="50" height="50">
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

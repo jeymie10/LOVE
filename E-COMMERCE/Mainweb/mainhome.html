@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="iconz.png">
+    <title>E-Commerce</title>
+    <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .w3-bar {
+      padding: 12px 20px;
+    }
+
+    .w3-bar-item {
+      position: relative;
+      margin-right: 0.5em;
+      text-decoration: none;
+    }
+
+    .w3-bar-item::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: purple;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .w3-bar-item:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .bruh {
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 5%;
+      color: white;
+      position: relative;
+    }
+
+    .bruh::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url(/background/bg.jpg) no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(5px); 
+        z-index: -1; 
+    }
+
+    .bruh .content {
+      position: relative;
+      z-index: 1;
+      max-width: 400px;
+    }
+
+    .bruh h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .bruh h1 {
+      font-size: 60px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .shop-now {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 24px;
+      border: 2px solid white;
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .shop-now:hover {
+      background: white;
+      color: black;
+    }
+
+    .w3-row-padding {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .w3-third {
+        width: 32%;
+        margin-bottom: 20px;
+    }
+
+    .w3-container {
+        padding: 16px;
+    }
+
+    footer .w3-footer {
+        padding: 16px;
+        font-size: 14px;
+    }
+
+    footer {
+        background-color: #222;
+        color: white;
+        padding: 60px 0 30px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .footer-column h3 {
+        color: #fff;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: purple;
+    }
+    
+    .footer-column p, .footer-column a {
+        color: #bbb;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        display: block;
+        transition: color 0.3s;
+    }
+    
+    .footer-column a:hover {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+        background: purple;
+        transform: translateY(-3px);
+    }
+    
+    .social-links img {
+        width: 20px;
+        height: 20px;
+        filter: brightness(0) invert(1);
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid #444;
+        color: #888;
+        font-size: 0.9rem;
+    }
+
+
+    </style>
+</head>
+<body>
+
+  <div class="w3-bar w3-white">
+    <a href="/Mainweb/mainhome.html" class="w3-text-purple w3-none">
+      <img src="/background/logo.png" title="Flaticon logo" width="60" height="35" class="block" alt="Flaticon logo">
+      <span class="w3-xlarge w3-none"><b>E-COMMERCE</b></span>
+    </a>
+
+    <div class="w3-right">
+      <a href="/Mainweb/mainhome.html" class="w3-bar-item w3-text-black">HOME</a>
+      <a href="/Mainweb/mainproduct.html" class="w3-bar-item w3-text-black">PRODUCTS</a>
+      <!-- <a href="about.html" class="w3-bar-item w3-text-black">ABOUT</a> -->
+      <a href="/Mainweb/maincontact.html" class="w3-bar-item w3-text-black">CONTACT</a>
+      <img src="/background/user.png" class="w3-circle w3-tiny" alt="profile">
+    </div>
+  </div>
+
+  <section class="bruh">
+    <div class="content">
+      <h2>Looking for something</h2>
+      <h1>Cheap?</h1>
+      <a href="/Mainweb/mainproduct.html" class="shop-now">Shop Now!</a>
+    </div>
+  </section>
+
+  <div class="w3-container w3-light-grey w3-padding-64">
+    <h2 class="w3-center">-Featured Products-</h2>
+    <div class="w3-row-padding w3-margin-top">
+        <div class="w3-third">
+            <div class="w3-card w3-white w3-hover-shadow">
+                <img src="https://www.js-usa.com/furniture/images/products/9898/17396/800x800/WHARW2301V.webp" class="w3-image" alt="Aqua">
+                <div class="w3-container w3-padding">
+                    <h3>Casual shoes W.Harvard Jr 23 junior black | JOMA®</h3>
+                    <p><span class="w3-text-grey"><s>$60.00</s></span> <strong>$58.00</strong></p>
+                    <button class="w3-button w3-purple w3-round w3-margin-bottom">Select Options</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-third">
+            <div class="w3-card w3-white w3-hover-shadow">
+                <img src="https://thesolestory.com/cdn/shop/products/60557-83_001_800x.png?v=1669891639" class="w3-image" alt="Orange">
+                <div class="w3-container w3-padding">
+                    <h3>Freak Lightweight Track P summit - Nike - Solestory</h3>
+                    <p><strong>$62.00</strong></p>
+                    <button class="w3-button w3-purple w3-round w3-margin-bottom">Select Options</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-third">
+            <div class="w3-card w3-white w3-hover-shadow">
+                <img src="https://yujinclothing.com/cdn/shop/products/TLBACK.jpg?v=1621079265" class="w3-image" alt="Blue">
+                <div class="w3-container w3-padding">
+                    <h3>Legend Hoodie | Yūjin Japanese Anime Streetwear Clothing </h3>
+                    <p><strong>$62.00</strong></p>
+                    <button class="w3-button w3-purple w3-round w3-margin-bottom">Select Options</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>E-Commerce</h3>
+            <p>This is an online marketplace for affordable, quality products.</p>
+            <p>We specialize in providing great quality and value on selected items.</p>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <a href="/Mainweb/mainhome.html">Home</a>
+            <a href="/Mainweb/mainproduct.html">Products</a>
+            <a href="/Mainweb/maincontact.html">Contact Us</a>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+            <p>Email: jham.shimoyama.coc@phinmaed.com</p>
+            <p>Phone: 09628708238</p>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+                <a href="https://github.com/Himeru27" title="GitHub" target="_blank">
+                    <img src="/social/github.png" alt="GitHub">
+                </a>
+                <a href="https://www.facebook.com/jhoshua.shimoyamavi/" title="Facebook" target="_blank">
+                    <img src="/social/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.linkedin.com/in/jhoshua-shimz-a20b05347/" title="LinkedIn" target="_blank">
+                    <img src="/social/linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://www.youtube.com/@himeru7879" title="YouTube" target="_blank">
+                    <img src="/social/youtube.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 UK2 E-Commerce. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+</body>
+</html>

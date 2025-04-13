@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="image/x-icon" href="iconz.png">
+    
+    <style>
+        /* Default styles */
+        .product-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+            padding: 16px;
+            scrollbar-width: thin; /* For Firefox */
+        }
+
+        /* For Chrome/Safari */
+        .product-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .product-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .product-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        .product-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .product-card {
+            flex: 0 0 auto;
+            width: 300px;
+            padding: 16px;
+            margin: 0 10px; /* Added margin between products */
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(bg.jpg) no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px); 
+            z-index: -1;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 35px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            color: purple;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-right: 1.5em;
+            position: relative;
+            text-decoration: none;
+            color: black;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            color: purple;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: purple;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-item:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 15px;
+        }
+
+        /* Flex Container for Centering Content */
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 5%;
+        }
+
+        .content-container {
+            max-width: 400px;
+        }
+
+        .content-container h2, 
+        .content-container h1 {
+            color: white;
+            margin: 5px 0;
+        }
+
+        .headz {
+            font-size: 60px; 
+            font-weight: bold;
+            color: white;
+            margin: 5px 0;
+        }
+
+        /* Modal and Payment Form Styling */
+        .w3-modal {
+            display: none;
+        }
+
+        /* By default, the payment form will be visible when G Cash is selected */
+        .gcash-form {
+            padding: 20px;
+            display: block; /* Show by default */
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .category-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid purple;
+        }
+
+        /* Add these styles to your existing CSS */
+.product-card {
+    height: 100%; /* Make all cards same height */
+}
+
+.w3-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.w3-card img {
+    width: 100%;
+    height: 250px; /* Fixed height for all images */
+    object-fit: contain; /* Ensures images maintain aspect ratio */
+    object-position: center; /* Centers images */
+    padding: 10px;
+    background-color: #f8f8f8; /* Optional: adds background to image area */
+}
+
+.w3-container.w3-padding {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px !important; /* Ensures consistent padding */
+}
+
+.w3-container.w3-padding h3 {
+    min-height: 60px; /* Adjust based on your longest title */
+    margin: 0 0 10px 0;
+    font-size: 16px; /* Optional: makes titles consistent */
+    line-height: 1.3;
+}
+
+.w3-container.w3-padding p {
+    margin: 10px 0;
+    min-height: 24px; /* Ensures price row always takes same space */
+    font-size: 18px; /* Makes prices consistent */
+}
+
+.w3-button.w3-purple {
+    margin-top: auto;
+    align-self: flex-start; /* Or 'center' if you prefer */
+    width: 100%; /* Makes all buttons same width */
+}
+
+
+footer {
+        background-color: #222;
+        color: white;
+        padding: 60px 0 30px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .footer-column h3 {
+        color: #fff;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: purple;
+    }
+    
+    .footer-column p, .footer-column a {
+        color: #bbb;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        display: block;
+        transition: color 0.3s;
+    }
+    
+    .footer-column a:hover {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+        background: purple;
+        transform: translateY(-3px);
+    }
+    
+    .social-links img {
+        width: 20px;
+        height: 20px;
+        filter: brightness(0) invert(1);
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid #444;
+        color: #888;
+        font-size: 0.9rem;
+    }
+    
+
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="mainhome.html" class="logo-container">
+        <img src="logo.png" alt="E-Commerce Logo" class="logo-img">
+        <span class="logo-text">E-COMMERCE</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="mainhome.html" class="nav-item">HOME</a>
+        <a href="mainproduct.html" class="nav-item">PRODUCTS</a>
+        <a href="maincontact.html" class="nav-item">CONTACT</a>
+        <img src="user.png" class="user-icon" alt="User Profile">
+    </div>
+</nav>
+
+<div class="w3-container">
+
+<!-- Men's Wear Section -->
+<div class="category-section">
+    <div class="category-title"> - Men's Wear - </div>
+    <div class="product-container w3-purple">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-blue">
+                <img src="https://yujinclothing.com/cdn/shop/products/TLBACK.jpg?v=1621079265" class="w3-image" alt="Blue Shirt">
+                <div class="w3-container w3-padding">
+                    <h3>Legend Hoodie | Yūjin Japanese Anime Streetwear Clothing</h3>
+                    <p><strong>₱62.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-blue">
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/skwgyqrbfzhu6uyeh0gg/air-max-270-mens-shoes-KkLcGR.png" class="w3-image" alt="Nike Shoes">
+                <div class="w3-container w3-padding">
+                    <h3>Nike Air Max 270</h3>
+                    <p><strong>₱5,995.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-blue">
+                <img src="men1.jpg" class="w3-image" alt="Denim Jacket">
+                <div class="w3-container w3-padding">
+                    <h3>Nike Wide Leg Jogging Pants</h3>
+                    <p><strong>₱1,299.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-blue">
+                <img src="men2.jpg" class="w3-image" alt="Adidas T-Shirt">
+                <div class="w3-container w3-padding">
+                    <h3>White Air Jordan inspired Cargo Pants</h3>
+                    <p><strong>₱1,200.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-blue">
+                <img src="men3.jpg" class="w3-image" alt="Chino Pants">
+                <div class="w3-container w3-padding">
+                    <h3>LV Inspired Street Luxe Set</h3>
+                    <p><strong>₱1,599.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Women's Wear Section -->
+<div class="category-section">
+    <div class="category-title"> - Women's Wear - </div>
+    <div class="product-container w3-purple">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-pink">
+                <img src="woman1.jpg" class="w3-image" alt="Floral Dress">
+                <div class="w3-container w3-padding">
+                    <h3>Lilac Cloud Comfort Set</h3>
+                    <p><strong>₱1,899.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-pink">
+                <img src="woman2.jpg" class="w3-image" alt="High Heels">
+                <div class="w3-container w3-padding">
+                    <h3>Sunshine Ribbon Straw Hat</h3>
+                    <p><strong>₱2,499.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-pink">
+                <img src="woman3.jpg" class="w3-image" alt="Blouse">
+                <div class="w3-container w3-padding">
+                    <h3>Daisy Breeze Vintage Dress</h3>
+                    <p><strong>₱1,599.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-pink">
+                <img src="woman4.jpg" class="w3-image" alt="Handbag">
+                <div class="w3-container w3-padding">
+                    <h3>Natural Flow Linen Trousers</h3>
+                    <p><strong>₱3,299.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-pink">
+                <img src="woman5.jpg" class="w3-image" alt="Jeans">
+                <div class="w3-container w3-padding">
+                    <h3>Sole Serenity Strap Sandals</h3>
+                    <p><strong>₱1,799.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Kids Wear Section -->
+<div class="category-section">
+    <div class="category-title"> - Kids Wear -  </div>
+    <div class="product-container w3-purple">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-light-blue">
+                <img src="kid1.jpg" class="w3-image" alt="Kids T-Shirt">
+                <div class="w3-container w3-padding">
+                    <h3>Boys Spiderman Glow Shoes Flashing LED Light Luminous Kids Summer Beach Sandals</h3>
+                    <p><strong>₱499.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-light-blue">
+                <img src="kid2.jpg" class="w3-image" alt="Kids Shoes">
+                <div class="w3-container w3-padding">
+                    <h3>Fashion Boys Shorts Toddler Kids Knee Length Pants Summer Children's Clothes</h3>
+                    <p><strong>₱1,199.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-light-blue">
+                <img src="kid3.jpg" class="w3-image" alt="Kids Jacket">
+                <div class="w3-container w3-padding">
+                    <h3>Play Day Adventure Set</h3>
+                    <p><strong>₱1,499.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-light-blue">
+                <img src="kid4.jpg" class="w3-image" alt="Kids Dress">
+                <div class="w3-container w3-padding">
+                    <h3>boy's spider outfit summer set red spider</h3>
+                    <p><strong>₱1,299.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <div class="w3-card w3-white w3-hover-shadow w3-hover-light-blue">
+                <img src="kid5.jpg" class="w3-image" alt="Kids Pants">
+                <div class="w3-container w3-padding">
+                    <h3>Boys Cargo Pants</h3>
+                    <p><strong>₱899.00</strong></p>
+                    <button onclick="document.getElementById('product').style.display='block'" class="w3-button w3-purple w3-margin-bottom w3-round">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Modal for Product -->
+<div id="product" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+        <div class="w3-container">
+            <span onclick="document.getElementById('product').style.display='none'" class="w3-button w3-display-topright ">&times;</span>
+            <p class="w3-center w3-large w3-none"><b>- Please fill in your Credentials - </b> </p>
+
+            <div class="gcash-form">
+                <form>
+                    
+                    <label for="gcashNumber"><b>G Cash Number:</b></label>
+                    <input type="text" class="w3-input" required><br><br>
+
+                    <label for="amount"><b>Amount:</b></label>
+                    <input type="number" class="w3-input" required><br><br>
+
+                    <button type="submit" class="w3-button w3-green">Submit Payment</button>
+                    <button onclick="document.getElementById('product').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>E-Commerce</h3>
+            <p>This is an online marketplace for affordable, quality products.</p>
+            <p>We specialize in providing great quality and value on selected items.</p>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <a href="mainhome.html">Home</a>
+            <a href="mainproduct.html">Products</a>
+            <a href="maincontact.html">Contact Us</a>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+            <p>Email: jham.shimoyama.coc@phinmaed.com</p>
+            <p>Phone: 09628708238</p>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+                <a href="https://github.com/Himeru27" title="GitHub" target="_blank">
+                    <img src="github.png" alt="GitHub">
+                </a>
+                <a href="https://www.facebook.com/jhoshua.shimoyamavi/" title="Facebook" target="_blank">
+                    <img src="facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.linkedin.com/in/jhoshua-shimz-a20b05347/" title="LinkedIn" target="_blank">
+                    <img src="linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://www.youtube.com/@himeru7879" title="YouTube" target="_blank">
+                    <img src="youtube.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 UK2 E-Commerce. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+
+</body>
+</html>

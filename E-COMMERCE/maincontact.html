@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="image/x-icon" href="iconz.png">
+
+    <style>
+
+        .contact-section {
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: purple;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            
+            transition: background-color 0.3s ease;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(bg.jpg) no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px); 
+            z-index: -1;
+        }
+
+        .w3-bar {
+            padding: 12px 20px;
+        }
+
+        .w3-bar-item {
+            margin-right: 0.5em;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .w3-bar-item::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: purple;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .w3-bar-item:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="w3-bar w3-white">
+    
+    <a href="mainproduct.html" class="w3-text-purple w3-none">
+        <img src="logo.png" title="Flaticon logo" width="60" height="35" class="block" alt="Flaticon logo">
+        <span class="w3-xlarge w3-none"><b>E-COMMERCE</b></span>
+    </a>
+
+    <div class="w3-right">
+        <a href="mainhome.html" class="w3-bar-item w3-text-black">HOME</a>
+        <a href="mainproduct.html" class="w3-bar-item w3-text-black">PRODUCTS</a>
+        <!-- <a href="about.html" class="w3-bar-item w3-text-black">ABOUT</a> wala nani since gi usa ra nako ang about sa footer -->
+        <a href="maincontact.html" class="w3-bar-item w3-text-black">CONTACT</a>
+        <img src="user.png" class="w3-circle w3-tiny" alt="profile">
+    </div>
+</div>
+
+<div id="contact" class="contact-section">
+    <h2>Contact Us</h2>
+    <p>Please follow us on our socials</p>
+    <div class="social-icons">
+
+        <a href="https://github.com/Himeru27" title="YouTube">
+            <img src="github.png" alt="YouTube" width="50" height="50">
+        </a>
+
+        <a href="https://www.facebook.com/jhoshua.shimoyamavi/" title="Facebook">
+            <img src="facebook.png" alt="Facebook" width="50" height="50">
+        </a>
+
+        <a href="https://www.linkedin.com/in/jhoshua-shimz-a20b05347/" title="LinkedIn">
+            <img src="linkedin.png" alt="LinkedIn" width="50" height="50">
+        </a>
+
+        <a href="https://www.youtube.com/@himeru7879" title="YouTube">
+            <img src="youtube.png" alt="YouTube" width="50" height="50">
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>
